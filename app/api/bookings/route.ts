@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { escapeHtml, sendEmail } from "@/lib/email";
 import {
   addBooking,
   getBookings,
   getBookedSlots,
   isAdminAuthorized,
   SlotTakenError,
+  type Booking,
 } from "@/lib/store";
 import { EVENT_TYPES, PACKAGES, SITE, TIME_SLOTS } from "@/lib/content";
 
@@ -73,8 +74,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ errors }, { status: 422 });
   }
 
+  let booking: Booking;
   try {
-    const booking = await addBooking({
+    booking = await addBooking({
       packageId,
       eventType,
       date,
@@ -86,76 +88,76 @@ export async function POST(request: Request) {
       guests,
       message,
     });
-
-    const apiKey = process.env.RESEND_API_KEY;
-    const toEmail = process.env.CONTACT_EMAIL;
-    if (apiKey && toEmail) {
-      const resend = new Resend(apiKey);
-      const pkg = PACKAGES.find((p) => p.id === packageId)!;
-      const timeSlot = TIME_SLOTS.find((s) => s.id === slot)!;
-      const formattedDate = new Date(date + "T12:00:00").toLocaleDateString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-
-      await Promise.all([
-        // Email to studio owner
-        resend.emails.send({
-          from: "Timeless Visuals <onboarding@resend.dev>",
-          to: toEmail,
-          replyTo: email,
-          subject: `New booking request — ${name} · ${formattedDate}`,
-          html: `
-            <h2>New booking request</h2>
-            <table style="border-collapse:collapse;width:100%;max-width:500px">
-              <tr><td style="padding:6px 0;color:#888;width:140px">Name</td><td><strong>${name}</strong></td></tr>
-              <tr><td style="padding:6px 0;color:#888">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-              <tr><td style="padding:6px 0;color:#888">Phone</td><td>${phone}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Event type</td><td>${eventType}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Date</td><td>${formattedDate}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Time slot</td><td>${timeSlot.label} (${timeSlot.time})</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Location</td><td>${location}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Package</td><td>${pkg.name} — $${pkg.price.toLocaleString()}</td></tr>
-              ${guests !== undefined ? `<tr><td style="padding:6px 0;color:#888">Guests</td><td>${guests}</td></tr>` : ""}
-              ${message ? `<tr><td style="padding:6px 0;color:#888;vertical-align:top">Notes</td><td style="white-space:pre-wrap">${message}</td></tr>` : ""}
-            </table>
-            <p style="margin-top:24px;color:#888;font-size:13px">Booking ID: ${booking.id}</p>
-          `,
-        }),
-        // Confirmation email to customer
-        resend.emails.send({
-          from: "Timeless Visuals <onboarding@resend.dev>",
-          to: email,
-          subject: `We received your booking request — ${SITE.name}`,
-          html: `
-            <h2>Thanks, ${name}!</h2>
-            <p>We've received your booking request and will confirm everything within one business day.</p>
-            <h3 style="margin-top:24px">Your request summary</h3>
-            <table style="border-collapse:collapse;width:100%;max-width:500px">
-              <tr><td style="padding:6px 0;color:#888;width:140px">Date</td><td><strong>${formattedDate}</strong></td></tr>
-              <tr><td style="padding:6px 0;color:#888">Time slot</td><td>${timeSlot.label} (${timeSlot.time})</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Event type</td><td>${eventType}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Location</td><td>${location}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Package</td><td>${pkg.name} — $${pkg.price.toLocaleString()}</td></tr>
-            </table>
-            <p style="margin-top:24px">In the meantime, feel free to reply to this email with any questions.</p>
-            <p>— The ${SITE.name} team</p>
-            <p style="margin-top:32px;color:#888;font-size:12px">${SITE.address} · ${SITE.phone}</p>
-          `,
-        }),
-      ]);
-    }
-
-    return NextResponse.json(
-      { ok: true, booking: { id: booking.id, date: booking.date, slot: booking.slot } },
-      { status: 201 },
-    );
   } catch (err) {
     if (err instanceof SlotTakenError) {
       return NextResponse.json({ error: err.message, code: "SLOT_TAKEN" }, { status: 409 });
     }
     return NextResponse.json({ error: "Could not save booking." }, { status: 500 });
   }
+
+  // Best-effort notifications — sendEmail never throws, so a mail failure
+  // (or Resend rejecting the customer address in test mode) can't turn a
+  // successfully-saved booking into an error response.
+  const toEmail = process.env.CONTACT_EMAIL;
+  if (toEmail) {
+    const pkg = PACKAGES.find((p) => p.id === packageId)!;
+    const timeSlot = TIME_SLOTS.find((s) => s.id === slot)!;
+    const formattedDate = new Date(date + "T12:00:00").toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const priceLabel = `${pkg.name} — $${pkg.price.toLocaleString()}`;
+
+    await Promise.all([
+      // Email to studio owner
+      sendEmail({
+        to: toEmail,
+        replyTo: email,
+        subject: `New booking request — ${name} · ${formattedDate}`,
+        html: `
+            <h2>New booking request</h2>
+            <table style="border-collapse:collapse;width:100%;max-width:500px">
+              <tr><td style="padding:6px 0;color:#888;width:140px">Name</td><td><strong>${escapeHtml(name)}</strong></td></tr>
+              <tr><td style="padding:6px 0;color:#888">Email</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+              <tr><td style="padding:6px 0;color:#888">Phone</td><td>${escapeHtml(phone)}</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Event type</td><td>${escapeHtml(eventType)}</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Date</td><td>${formattedDate}</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Time slot</td><td>${timeSlot.label} (${timeSlot.time})</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Location</td><td>${escapeHtml(location)}</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Package</td><td>${priceLabel}</td></tr>
+              ${guests !== undefined ? `<tr><td style="padding:6px 0;color:#888">Guests</td><td>${guests}</td></tr>` : ""}
+              ${message ? `<tr><td style="padding:6px 0;color:#888;vertical-align:top">Notes</td><td style="white-space:pre-wrap">${escapeHtml(message)}</td></tr>` : ""}
+            </table>
+            <p style="margin-top:24px;color:#888;font-size:13px">Booking ID: ${booking.id}</p>
+          `,
+      }),
+      // Confirmation email to customer
+      sendEmail({
+        to: email,
+        subject: `We received your booking request — ${SITE.name}`,
+        html: `
+            <h2>Thanks, ${escapeHtml(name)}!</h2>
+            <p>We've received your booking request and will confirm everything within one business day.</p>
+            <h3 style="margin-top:24px">Your request summary</h3>
+            <table style="border-collapse:collapse;width:100%;max-width:500px">
+              <tr><td style="padding:6px 0;color:#888;width:140px">Date</td><td><strong>${formattedDate}</strong></td></tr>
+              <tr><td style="padding:6px 0;color:#888">Time slot</td><td>${timeSlot.label} (${timeSlot.time})</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Event type</td><td>${escapeHtml(eventType)}</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Location</td><td>${escapeHtml(location)}</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Package</td><td>${priceLabel}</td></tr>
+            </table>
+            <p style="margin-top:24px">In the meantime, feel free to reply to this email with any questions.</p>
+            <p>— The ${SITE.name} team</p>
+            <p style="margin-top:32px;color:#888;font-size:12px">${SITE.address} · ${SITE.phone}</p>
+          `,
+      }),
+    ]);
+  }
+
+  return NextResponse.json(
+    { ok: true, booking: { id: booking.id, date: booking.date, slot: booking.slot } },
+    { status: 201 },
+  );
 }

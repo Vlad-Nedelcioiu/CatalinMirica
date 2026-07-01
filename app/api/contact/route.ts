@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { escapeHtml, sendEmail } from "@/lib/email";
 import { addMessage, getMessages, isAdminAuthorized } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
@@ -41,23 +41,21 @@ export async function POST(request: Request) {
 
   const saved = await addMessage({ name, email, message, phone, subject });
 
-  const apiKey = process.env.RESEND_API_KEY;
+  // Best-effort notification — a mail failure must not fail the saved request.
   const toEmail = process.env.CONTACT_EMAIL;
-  if (apiKey && toEmail) {
-    const resend = new Resend(apiKey);
-    await resend.emails.send({
-      from: "Timeless Visuals <onboarding@resend.dev>",
+  if (toEmail) {
+    await sendEmail({
       to: toEmail,
       replyTo: email,
       subject: `New contact: ${subject ?? `message from ${name}`}`,
       html: `
         <h2>New contact form submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
-        ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ""}
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
+        ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ""}
+        ${subject ? `<p><strong>Subject:</strong> ${escapeHtml(subject)}</p>` : ""}
         <p><strong>Message:</strong></p>
-        <p style="white-space:pre-wrap">${message}</p>
+        <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
       `,
     });
   }
