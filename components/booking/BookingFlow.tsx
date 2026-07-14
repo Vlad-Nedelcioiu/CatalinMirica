@@ -2,15 +2,13 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertCircle, ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
-import { EVENT_TYPES, PACKAGES, TIME_SLOTS } from "@/lib/content";
-import { cn, formatLongDate, formatPrice } from "@/lib/utils";
+import { EVENT_TYPES, PACKAGES } from "@/lib/content";
+import { cn, formatLongDate, formatPrice, formatTime } from "@/lib/utils";
 import { Calendar } from "./Calendar";
-import { TimeSlots } from "./TimeSlots";
+import { TimePicker } from "./TimePicker";
 import { PackagePicker } from "./PackagePicker";
 import { BookingForm, type BookingDetails } from "./BookingForm";
 import { Confirmation, type ConfirmedBooking } from "./Confirmation";
-
-type Booked = { date: string; slot: string };
 
 const STEPS = ["Package", "Date & time", "Your details", "Review"];
 const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
@@ -26,7 +24,7 @@ const initialDetails: BookingDetails = {
 };
 
 export function BookingFlow() {
-  const [booked, setBooked] = useState<Booked[]>([]);
+  const [bookedDates, setBookedDates] = useState<string[]>([]);
   const [loadingAvail, setLoadingAvail] = useState(true);
 
   const [step, setStep] = useState(0);
@@ -34,7 +32,7 @@ export function BookingFlow() {
 
   const [packageId, setPackageId] = useState("");
   const [date, setDate] = useState<string | null>(null);
-  const [slot, setSlot] = useState<string | null>(null);
+  const [time, setTime] = useState<string | null>(null);
   const [details, setDetails] = useState<BookingDetails>(initialDetails);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -49,7 +47,7 @@ export function BookingFlow() {
     try {
       const res = await fetch("/api/bookings", { cache: "no-store" });
       const data = await res.json();
-      setBooked(data.booked ?? []);
+      setBookedDates(data.bookedDates ?? []);
     } catch {
       /* availability is best-effort; the server still guards on submit */
     } finally {
@@ -71,11 +69,10 @@ export function BookingFlow() {
   }, [step]);
 
   const pkg = useMemo(() => PACKAGES.find((p) => p.id === packageId), [packageId]);
-  const slotInfo = useMemo(() => TIME_SLOTS.find((s) => s.id === slot), [slot]);
 
   const canContinue = (() => {
     if (step === 0) return Boolean(packageId);
-    if (step === 1) return Boolean(date && slot);
+    if (step === 1) return Boolean(date && time);
     if (step === 2)
       return (
         details.name.trim().length > 0 &&
@@ -99,7 +96,7 @@ export function BookingFlow() {
 
   function selectDate(iso: string) {
     setDate(iso);
-    setSlot(null);
+    setTime(null);
   }
 
   function updateDetail(key: keyof BookingDetails, value: string) {
@@ -121,7 +118,7 @@ export function BookingFlow() {
         body: JSON.stringify({
           packageId,
           date,
-          slot,
+          time,
           eventType: details.eventType,
           name: details.name.trim(),
           email: details.email.trim(),
@@ -138,7 +135,7 @@ export function BookingFlow() {
           packageId,
           eventType: details.eventType,
           date: date!,
-          slot: slot!,
+          time: time!,
           name: details.name.trim(),
           email: details.email.trim(),
           location: details.location.trim(),
@@ -146,9 +143,10 @@ export function BookingFlow() {
         return;
       }
       if (res.status === 409) {
-        setSubmitError("That time was just booked by someone else. Please pick another slot.");
+        setSubmitError("That date was just booked by someone else. Please pick another day.");
         await loadAvailability();
-        setSlot(null);
+        setDate(null);
+        setTime(null);
         goTo(1);
         return;
       }
@@ -223,12 +221,12 @@ export function BookingFlow() {
               </div>
             ) : (
               <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
-                <Calendar booked={booked} selected={date} onSelect={selectDate} />
+                <Calendar bookedDates={bookedDates} selected={date} onSelect={selectDate} />
                 <div>
                   <h3 className="mb-3 font-display text-lg">
                     {date ? formatLongDate(date) : "Choose a date"}
                   </h3>
-                  <TimeSlots date={date} booked={booked} selected={slot} onSelect={setSlot} />
+                  <TimePicker date={date} value={time} onChange={setTime} />
                 </div>
               </div>
             )
@@ -242,7 +240,7 @@ export function BookingFlow() {
             <ReviewCard
               pkgName={pkg ? `${pkg.name} · ${formatPrice(pkg.price)}` : "—"}
               dateLabel={date ? formatLongDate(date) : "—"}
-              slotLabel={slotInfo ? `${slotInfo.label} (${slotInfo.time})` : "—"}
+              timeLabel={time ? formatTime(time) : "—"}
               details={details}
               onEdit={(s) => setStep(s)}
             />
@@ -302,11 +300,7 @@ export function BookingFlow() {
               muted={!pkg}
             />
             <SummaryRow label="Date" value={date ? formatLongDate(date) : "—"} muted={!date} />
-            <SummaryRow
-              label="Time"
-              value={slotInfo ? slotInfo.label : "—"}
-              muted={!slotInfo}
-            />
+            <SummaryRow label="Time" value={time ? formatTime(time) : "—"} muted={!time} />
             <SummaryRow label="Event" value={details.eventType} />
 
             <div className="mt-5 rounded-xl bg-sand/50 p-4 text-xs leading-relaxed text-ink-soft">
@@ -342,13 +336,13 @@ function SummaryRow({
 function ReviewCard({
   pkgName,
   dateLabel,
-  slotLabel,
+  timeLabel,
   details,
   onEdit,
 }: {
   pkgName: string;
   dateLabel: string;
-  slotLabel: string;
+  timeLabel: string;
   details: BookingDetails;
   onEdit: (step: number) => void;
 }) {
@@ -359,7 +353,7 @@ function ReviewCard({
       step: 1,
       rows: [
         ["Date", dateLabel],
-        ["Start time", slotLabel],
+        ["Start time", timeLabel],
       ],
     },
     {

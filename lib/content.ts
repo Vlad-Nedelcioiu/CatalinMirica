@@ -128,7 +128,7 @@ export const PACKAGES: Package[] = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/*  Booking — event types & time slots                                        */
+/*  Booking — event types                                                     */
 /* -------------------------------------------------------------------------- */
 
 export const EVENT_TYPES = [
@@ -140,13 +140,8 @@ export const EVENT_TYPES = [
   "Other",
 ] as const;
 
-export type TimeSlot = { id: string; label: string; time: string };
-
-export const TIME_SLOTS: TimeSlot[] = [
-  { id: "morning", label: "Morning", time: "8:00 – 12:00" },
-  { id: "afternoon", label: "Afternoon", time: "12:00 – 17:00" },
-  { id: "evening", label: "Evening", time: "17:00 – 22:00" },
-];
+/** Quick-pick start times shown alongside the free time picker (24h "HH:MM"). */
+export const QUICK_TIMES = ["09:00", "11:00", "13:00", "15:00", "17:00", "19:00"];
 
 /* -------------------------------------------------------------------------- */
 /*  Portfolio                                                                  */
@@ -281,7 +276,7 @@ export const FAQS = [
   },
   {
     q: "What happens after I request a date?",
-    a: "Submitting the booking form places a soft hold on your date and slot. We'll confirm details and send an agreement within one business day — you're not charged until everything is signed.",
+    a: "Submitting the booking form places a soft hold on your date. We'll confirm details and send an agreement within one business day — you're not charged until everything is signed.",
   },
   {
     q: "Can we customise a package?",

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { CalendarDays, Inbox, Lock, MapPin, Phone } from "lucide-react";
 import { getBookings, getMessages, isAdminAuthorized } from "@/lib/store";
-import { PACKAGES, TIME_SLOTS } from "@/lib/content";
+import { PACKAGES } from "@/lib/content";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Section } from "@/components/site/Section";
 import { Container } from "@/components/site/Container";
-import { cn, formatLongDate } from "@/lib/utils";
+import { cn, formatLongDate, formatTime } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 };
 
 const pkgName = (id: string) => PACKAGES.find((p) => p.id === id)?.name ?? id;
-const slotLabel = (id: string) => TIME_SLOTS.find((s) => s.id === id)?.label ?? id;
 const when = (iso: string) =>
   new Date(iso).toLocaleString("en-US", {
     dateStyle: "medium",
@@ -107,7 +106,7 @@ export default async function AdminPage({
                         <div>
                           <p className="font-display text-lg">{formatLongDate(b.date)}</p>
                           <p className="text-sm text-ink-soft">
-                            {slotLabel(b.slot)} · {b.eventType} · {pkgName(b.packageId)}
+                            {b.time ? formatTime(b.time) : "—"} · {b.eventType} · {pkgName(b.packageId)}
                           </p>
                         </div>
                         <span

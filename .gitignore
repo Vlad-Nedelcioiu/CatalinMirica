@@ -29,3 +29,6 @@ next-env.d.ts
 
 # local booking/contact data store (created at runtime)
 /data/*.json
+
+# Claude Code project config (local skills/settings)
+.claude/

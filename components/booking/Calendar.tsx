@@ -16,19 +16,16 @@ import {
   subMonths,
 } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { TIME_SLOTS } from "@/lib/content";
 import { cn } from "@/lib/utils";
-
-type Booked = { date: string; slot: string };
 
 const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 export function Calendar({
-  booked,
+  bookedDates,
   selected,
   onSelect,
 }: {
-  booked: Booked[];
+  bookedDates: string[];
   selected: string | null;
   onSelect: (iso: string) => void;
 }) {
@@ -40,8 +37,7 @@ export function Calendar({
     end: endOfWeek(endOfMonth(month)),
   });
 
-  const slotCount = TIME_SLOTS.length;
-  const takenForDay = (iso: string) => booked.filter((b) => b.date === iso).length;
+  const takenDates = new Set(bookedDates);
   const canGoPrev = !isSameMonth(month, today);
 
   return (
@@ -85,9 +81,7 @@ export function Calendar({
           const iso = format(day, "yyyy-MM-dd");
           const inMonth = isSameMonth(day, month);
           const past = isBefore(day, today);
-          const taken = takenForDay(iso);
-          const full = taken >= slotCount;
-          const partial = taken > 0 && !full;
+          const full = takenDates.has(iso);
           const isSelected = selected === iso;
           const disabled = !inMonth || past || full;
 
@@ -110,9 +104,6 @@ export function Calendar({
               )}
             >
               {format(day, "d")}
-              {partial && !isSelected ? (
-                <span className="absolute bottom-1 h-1 w-1 rounded-full bg-brass" />
-              ) : null}
             </button>
           );
         })}
@@ -124,10 +115,7 @@ export function Calendar({
           <span className="h-2.5 w-2.5 rounded-full bg-ink" /> Selected
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-brass" /> Limited slots
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="text-muted/50 line-through">00</span> Fully booked
+          <span className="text-muted/50 line-through">00</span> Booked / unavailable
         </span>
       </div>
     </div>

@@ -6,8 +6,8 @@ videography studio. Built with the latest stack and a light, editorial aesthetic
 - **Home** — cinematic hero, services, featured work, process, animated stats, testimonials
 - **Portfolio** — category-filterable gallery with a full-screen lightbox (keyboard + arrow nav)
 - **Contact** — validated contact form (persisted), studio details, map, FAQ accordion
-- **Booking** — multi-step flow with a real **availability calendar**, time-slot selection,
-  package picker, and a confirmation step. Submissions are saved server-side.
+- **Booking** — multi-step flow with a real **availability calendar** (one booking per day),
+  a start-time picker, package picker, and a confirmation step. Saved server-side.
 - **Admin** (`/admin`) — a lightweight dashboard listing all bookings and messages.
 
 ## Tech stack
@@ -35,10 +35,11 @@ npm start
 ## How the booking system works
 
 - The booking page (`/booking`) fetches live availability from `GET /api/bookings`,
-  which returns the date + time-slot pairs already taken.
-- The calendar disables past dates and marks days as **fully booked** once every slot
-  (Morning / Afternoon / Evening) is reserved; partially-booked days show a brass dot.
-- Submitting the flow `POST`s to `/api/bookings`. The server re-checks the slot to guard
+  which returns the list of dates already taken.
+- The calendar disables past dates and greys out any day that already has a booking —
+  it's **one booking per day**. The client also picks a start time (just so the studio
+  knows when to arrive; it doesn't affect availability).
+- Submitting the flow `POST`s to `/api/bookings`. The server re-checks the date to guard
   against double-booking (returns `409` if it was just taken) and stores the request.
 - Contact form submissions `POST` to `/api/contact`.
 

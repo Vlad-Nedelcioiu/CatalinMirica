@@ -3,17 +3,19 @@ import { escapeHtml, sendEmail } from "@/lib/email";
 import {
   addBooking,
   getBookings,
-  getBookedSlots,
+  getBookedDates,
   isAdminAuthorized,
-  SlotTakenError,
+  DateTakenError,
   type Booking,
 } from "@/lib/store";
-import { EVENT_TYPES, PACKAGES, SITE, TIME_SLOTS } from "@/lib/content";
+import { EVENT_TYPES, PACKAGES, SITE } from "@/lib/content";
+import { formatTime } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
 const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 const isDate = (s: string) => /^\d{4}-\d{2}-\d{2}$/.test(s);
+const isTime = (s: string) => /^([01]\d|2[0-3]):[0-5]\d$/.test(s);
 
 function todayISO() {
   const d = new Date();
@@ -32,9 +34,9 @@ export async function GET(request: Request) {
     return NextResponse.json({ bookings: [...bookings].reverse() });
   }
 
-  // Public availability — only the taken date+slot pairs, no personal data.
-  const booked = await getBookedSlots();
-  return NextResponse.json({ booked, slots: TIME_SLOTS });
+  // Public availability — only the taken dates, no personal data.
+  const bookedDates = await getBookedDates();
+  return NextResponse.json({ bookedDates });
 }
 
 export async function POST(request: Request) {
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
   const packageId = String(body.packageId ?? "");
   const eventType = String(body.eventType ?? "");
   const date = String(body.date ?? "");
-  const slot = String(body.slot ?? "");
+  const time = String(body.time ?? "");
   const name = String(body.name ?? "").trim();
   const email = String(body.email ?? "").trim();
   const phone = String(body.phone ?? "").trim();
@@ -62,7 +64,7 @@ export async function POST(request: Request) {
     errors.eventType = "Choose an event type.";
   if (!isDate(date)) errors.date = "Pick a valid date.";
   else if (date < todayISO()) errors.date = "Pick a date in the future.";
-  if (!TIME_SLOTS.some((s) => s.id === slot)) errors.slot = "Pick a time slot.";
+  if (!isTime(time)) errors.time = "Pick a start time.";
   if (!name) errors.name = "Your name is required.";
   if (!isEmail(email)) errors.email = "Enter a valid email.";
   if (!phone) errors.phone = "A phone number helps us confirm.";
@@ -80,7 +82,7 @@ export async function POST(request: Request) {
       packageId,
       eventType,
       date,
-      slot,
+      time,
       name,
       email,
       phone,
@@ -89,8 +91,8 @@ export async function POST(request: Request) {
       message,
     });
   } catch (err) {
-    if (err instanceof SlotTakenError) {
-      return NextResponse.json({ error: err.message, code: "SLOT_TAKEN" }, { status: 409 });
+    if (err instanceof DateTakenError) {
+      return NextResponse.json({ error: err.message, code: "DATE_TAKEN" }, { status: 409 });
     }
     return NextResponse.json({ error: "Could not save booking." }, { status: 500 });
   }
@@ -101,7 +103,7 @@ export async function POST(request: Request) {
   const toEmail = process.env.CONTACT_EMAIL;
   if (toEmail) {
     const pkg = PACKAGES.find((p) => p.id === packageId)!;
-    const timeSlot = TIME_SLOTS.find((s) => s.id === slot)!;
+    const formattedTime = formatTime(time);
     const formattedDate = new Date(date + "T12:00:00").toLocaleDateString("en-US", {
       weekday: "long",
       year: "numeric",
@@ -124,7 +126,7 @@ export async function POST(request: Request) {
               <tr><td style="padding:6px 0;color:#888">Phone</td><td>${escapeHtml(phone)}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Event type</td><td>${escapeHtml(eventType)}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Date</td><td>${formattedDate}</td></tr>
-              <tr><td style="padding:6px 0;color:#888">Time slot</td><td>${timeSlot.label} (${timeSlot.time})</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Start time</td><td>${formattedTime}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Location</td><td>${escapeHtml(location)}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Package</td><td>${priceLabel}</td></tr>
               ${guests !== undefined ? `<tr><td style="padding:6px 0;color:#888">Guests</td><td>${guests}</td></tr>` : ""}
@@ -143,7 +145,7 @@ export async function POST(request: Request) {
             <h3 style="margin-top:24px">Your request summary</h3>
             <table style="border-collapse:collapse;width:100%;max-width:500px">
               <tr><td style="padding:6px 0;color:#888;width:140px">Date</td><td><strong>${formattedDate}</strong></td></tr>
-              <tr><td style="padding:6px 0;color:#888">Time slot</td><td>${timeSlot.label} (${timeSlot.time})</td></tr>
+              <tr><td style="padding:6px 0;color:#888">Start time</td><td>${formattedTime}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Event type</td><td>${escapeHtml(eventType)}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Location</td><td>${escapeHtml(location)}</td></tr>
               <tr><td style="padding:6px 0;color:#888">Package</td><td>${priceLabel}</td></tr>
@@ -157,7 +159,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json(
-    { ok: true, booking: { id: booking.id, date: booking.date, slot: booking.slot } },
+    { ok: true, booking: { id: booking.id, date: booking.date, time: booking.time } },
     { status: 201 },
   );
 }

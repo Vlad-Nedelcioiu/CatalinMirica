@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { CalendarCheck, Check, Mail } from "lucide-react";
-import { PACKAGES, TIME_SLOTS } from "@/lib/content";
+import { PACKAGES } from "@/lib/content";
 import { buttonClasses } from "@/components/ui/Button";
-import { cn, formatLongDate, formatPrice } from "@/lib/utils";
+import { cn, formatLongDate, formatPrice, formatTime } from "@/lib/utils";
 
 export type ConfirmedBooking = {
   id: string;
   packageId: string;
   eventType: string;
   date: string;
-  slot: string;
+  time: string;
   name: string;
   email: string;
   location: string;
@@ -19,14 +19,13 @@ export type ConfirmedBooking = {
 
 export function Confirmation({ booking }: { booking: ConfirmedBooking }) {
   const pkg = PACKAGES.find((p) => p.id === booking.packageId);
-  const slot = TIME_SLOTS.find((s) => s.id === booking.slot);
   const ref = booking.id.slice(0, 8).toUpperCase();
 
   const rows = [
     { label: "Event", value: booking.eventType },
     { label: "Package", value: pkg ? `${pkg.name} · ${formatPrice(pkg.price)}` : "—" },
     { label: "Date", value: formatLongDate(booking.date) },
-    { label: "Start time", value: slot ? `${slot.label} (${slot.time})` : "—" },
+    { label: "Start time", value: formatTime(booking.time) },
     { label: "Location", value: booking.location },
   ];
 

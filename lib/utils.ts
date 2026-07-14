@@ -18,6 +18,15 @@ export function formatLongDate(iso: string) {
   });
 }
 
+/** "14:30" -> "2:30 PM" */
+export function formatTime(hhmm: string) {
+  const [h, m] = hhmm.split(":").map(Number);
+  return new Date(2000, 0, 1, h, m).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 /** Format a number as USD with no decimals. */
 export function formatPrice(value: number) {
   return new Intl.NumberFormat("en-US", {

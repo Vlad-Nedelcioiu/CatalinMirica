@@ -15,7 +15,7 @@ export type Booking = {
   packageId: string;
   eventType: string;
   date: string; // yyyy-MM-dd
-  slot: string; // TimeSlot id
+  time: string; // HH:MM (24h) — when the studio should arrive
   name: string;
   email: string;
   phone: string;
@@ -79,18 +79,17 @@ export async function getBookings(): Promise<Booking[]> {
   return readJson<Booking[]>(BOOKINGS_FILE, []);
 }
 
-/** Date+slot pairs that are taken (anything not cancelled). */
-export async function getBookedSlots(): Promise<{ date: string; slot: string }[]> {
+/** Dates that are taken (anything not cancelled). One booking per day. */
+export async function getBookedDates(): Promise<string[]> {
   const bookings = await getBookings();
-  return bookings
-    .filter((b) => b.status !== "cancelled")
-    .map((b) => ({ date: b.date, slot: b.slot }));
+  const dates = bookings.filter((b) => b.status !== "cancelled").map((b) => b.date);
+  return [...new Set(dates)];
 }
 
-export class SlotTakenError extends Error {
+export class DateTakenError extends Error {
   constructor() {
-    super("That date and time slot is no longer available.");
-    this.name = "SlotTakenError";
+    super("That date is no longer available.");
+    this.name = "DateTakenError";
   }
 }
 
@@ -99,10 +98,8 @@ export async function addBooking(
 ): Promise<Booking> {
   return withLock(BOOKINGS_FILE, async () => {
     const bookings = await getBookings();
-    const clash = bookings.some(
-      (b) => b.status !== "cancelled" && b.date === input.date && b.slot === input.slot,
-    );
-    if (clash) throw new SlotTakenError();
+    const clash = bookings.some((b) => b.status !== "cancelled" && b.date === input.date);
+    if (clash) throw new DateTakenError();
 
     const booking: Booking = {
       id: randomUUID(),
