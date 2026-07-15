@@ -1,13 +1,4 @@
-import {
-  Camera,
-  Clapperboard,
-  Sparkles,
-  Users,
-  AtSign,
-  Play,
-  Share2,
-  type LucideIcon,
-} from "lucide-react";
+import { AtSign, Play, Share2, type LucideIcon } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
 /*  Studio details                                                            */
@@ -22,9 +13,9 @@ export const SITE = {
   instagram: "@timelessvisuals",
   foundedYear: 2017,
   socials: [
-    { label: "Instagram", href: "https://instagram.com", icon: AtSign as LucideIcon },
-    { label: "YouTube", href: "https://youtube.com", icon: Play as LucideIcon },
-    { label: "Facebook", href: "https://facebook.com", icon: Share2 as LucideIcon },
+    { label: "Instagram", href: "https://instagram.com/timelessvisuals", icon: AtSign as LucideIcon },
+    { label: "YouTube", href: "https://youtube.com/@timelessvisuals", icon: Play as LucideIcon },
+    { label: "Facebook", href: "https://facebook.com/timelessvisuals", icon: Share2 as LucideIcon },
   ],
 };
 
@@ -33,40 +24,45 @@ export const SITE = {
 /* -------------------------------------------------------------------------- */
 
 export type Service = {
-  icon: LucideIcon;
   title: string;
   description: string;
   features: string[];
+  photo: string; // Unsplash photo path, reused from the portfolio set
+  photoAlt: string;
 };
 
 export const SERVICES: Service[] = [
   {
-    icon: Camera,
     title: "Wedding Photography",
     description:
       "Documentary-led coverage of your day — candid emotion, fine details, and portraits that feel like you.",
     features: ["Full-day coverage", "Two photographers", "Hand-edited gallery"],
+    photo: "photo-1519741497674-611481863552",
+    photoAlt: "Bride and groom exchanging rings at an outdoor ceremony",
   },
   {
-    icon: Clapperboard,
     title: "Cinematic Videography",
     description:
       "Highlight films and full-length features, scored and colour-graded to play like a short film.",
     features: ["4K cinema cameras", "Licensed soundtrack", "Highlight + feature cut"],
+    photo: "photo-1470229722913-7c0e2dbbafd3",
+    photoAlt: "Stage lights sweeping over a crowd, filmed from the floor",
   },
   {
-    icon: Sparkles,
     title: "Event Coverage",
     description:
       "Concerts, galas, launches and corporate events captured with a fast, unobtrusive crew.",
     features: ["Same-day previews", "Multi-camera teams", "Brand-ready delivery"],
+    photo: "photo-1517048676732-d65bc937f952",
+    photoAlt: "Audience at a corporate summit, photographed from the aisle",
   },
   {
-    icon: Users,
     title: "Portrait Sessions",
     description:
       "Editorial portraits for individuals, couples, families and teams — in studio or on location.",
     features: ["Direction included", "Studio or location", "Print-ready files"],
+    photo: "photo-1534528741775-53994a69daeb",
+    photoAlt: "Natural-light portrait by a window",
   },
 ];
 
@@ -203,19 +199,6 @@ export const PROCESS = [
   { step: "02", title: "Plan together", description: "We craft a shot list and timeline, then lock your date and package." },
   { step: "03", title: "The day", description: "Our crew blends in, capturing emotion and detail without the fuss." },
   { step: "04", title: "Relive it", description: "Receive a hand-edited gallery and cinematic film to keep forever." },
-];
-
-/* -------------------------------------------------------------------------- */
-/*  Stats                                                                      */
-/* -------------------------------------------------------------------------- */
-
-export type Stat = { value: number; suffix?: string; label: string };
-
-export const STATS: Stat[] = [
-  { value: 350, suffix: "+", label: "Events captured" },
-  { value: 9, label: "Years behind the lens" },
-  { value: 180, suffix: "+", label: "Five-star reviews" },
-  { value: 12, label: "Awards & features" },
 ];
 
 /* -------------------------------------------------------------------------- */

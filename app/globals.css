@@ -11,12 +11,19 @@
   --color-ink: #1b1916;
   --color-ink-soft: #4b4740;
   --color-muted: #8b857a;
+  --color-muted-deep: #6b665e;
   --color-line: #e7e0d4;
   --color-brass: #a9743f;
   --color-brass-soft: #c79a64;
+  --color-brass-deep: #8a5a2b;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 1.4;
+  --text-headline: 2.75rem;
+  --text-headline--line-height: 1.15;
 
   --shadow-soft: 0 18px 50px -28px rgba(27, 25, 22, 0.35);
   --shadow-card: 0 12px 40px -24px rgba(27, 25, 22, 0.28);
@@ -67,17 +74,23 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
     }
+    /* kenburns uses `forwards`; killing its duration would jump to the zoomed
+       end state, so opt it out entirely and keep the natural framing. */
+    .animate-kenburns {
+      animation: none !important;
+    }
   }
 }
 
 @layer components {
-  /* Small uppercase tracked label used above headings. */
+  /* Small uppercase tracked label used above headings.
+     brass-deep (not brass) so it meets 4.5:1 on cream/paper at this size. */
   .eyebrow {
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--color-brass);
+    color: var(--color-brass-deep);
   }
 
   /* Animated underline link, brass on hover. */
@@ -90,12 +103,60 @@
     left: 0;
     bottom: -2px;
     height: 1px;
-    width: 0;
-    background: currentColor;
-    transition: width 0.4s var(--ease-out-soft);
-  }
-  .link-underline:hover::after {
     width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-soft);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Camera-flash page transition (see components/site/PageFlash.tsx).
+   A rhomboid of light covers the page, holds for a beat like a flash pop,
+   then contracts toward center and burns off — an aperture closing.
+---------------------------------------------------------------------------- */
+.page-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 80; /* above the lightbox (70): momentary, topmost layer */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-flash__shape {
+  /* A square rotated 45° needs side ≥ (vw+vh)/√2 to cover the viewport
+     corner-to-corner; 0.75 adds a safety margin over 1/√2. */
+  width: calc((100vw + 100vh) * 0.75);
+  aspect-ratio: 1;
+  rotate: 45deg;
+  background: radial-gradient(closest-side, #ffffff 58%, var(--color-cream));
+  border: 1px solid var(--color-brass-soft);
+  box-shadow: 0 0 120px rgba(199, 154, 100, 0.35);
+  /* shutter-snap ease-out-expo */
+  animation: page-flash-burn-off 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes page-flash-burn-off {
+  /* the pop: flash fills the page for a ~100ms beat before contracting */
+  0%,
+  16% {
+    scale: 1;
+    opacity: 1;
+  }
+  /* stays fully lit through mid-contraction, then burns off */
+  45% {
+    opacity: 1;
+  }
+  100% {
+    scale: 0.04;
+    opacity: 0;
   }
 }
 

@@ -9,7 +9,13 @@ export const metadata: Metadata = {
     "A selection of weddings, engagements, concerts, corporate events and portraits captured by Timeless Visuals.",
 };
 
-export default function PortfolioPage() {
+export default async function PortfolioPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ item?: string }>;
+}) {
+  const { item } = await searchParams;
+
   return (
     <>
       <PageHeader
@@ -23,7 +29,7 @@ export default function PortfolioPage() {
         lead="Browse by the kind of event you're planning. Tap any frame to view it full-screen."
       />
       <Section className="pt-0">
-        <Gallery />
+        <Gallery initialItemId={item} />
       </Section>
     </>
   );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Aperture, AtSign, Mail, MapPin, Phone } from "lucide-react";
+import { Aperture, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "./Container";
 import { SITE } from "@/lib/content";
 import { buttonClasses } from "@/components/ui/Button";
@@ -22,20 +22,18 @@ export function Footer() {
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-soft">
               An events photography &amp; videography studio capturing weddings, concerts,
-              and milestones with a calm, cinematic eye — so your moments stay vivid for
-              decades.
+              and milestones with a calm, cinematic eye.
             </p>
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
               {SITE.socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                  className="link-underline font-medium text-ink-soft transition-colors hover:text-ink"
                 >
-                  <s.icon className="h-4 w-4" />
+                  {s.label}
                 </a>
               ))}
             </div>
@@ -43,7 +41,7 @@ export function Footer() {
 
           {/* Explore */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-deep">
               Explore
             </h3>
             <ul className="mt-5 space-y-3 text-sm">
@@ -54,7 +52,7 @@ export function Footer() {
                 { href: "/contact", label: "Contact" },
               ].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-ink-soft transition-colors hover:text-brass">
+                  <Link href={l.href} className="text-ink-soft transition-colors hover:text-brass-deep">
                     {l.label}
                   </Link>
                 </li>
@@ -64,7 +62,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-deep">
               Studio
             </h3>
             <ul className="mt-5 space-y-4 text-sm text-ink-soft">
@@ -74,29 +72,33 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-brass" />
-                <a href={`tel:${SITE.phone.replace(/[^+\d]/g, "")}`} className="hover:text-brass">
+                <a href={`tel:${SITE.phone.replace(/[^+\d]/g, "")}`} className="hover:text-brass-deep">
                   {SITE.phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-brass" />
-                <a href={`mailto:${SITE.email}`} className="hover:text-brass">
+                <a href={`mailto:${SITE.email}`} className="hover:text-brass-deep">
                   {SITE.email}
                 </a>
               </li>
             </ul>
             <Link href="/booking" className={cn(buttonClasses({ size: "sm", variant: "outline" }), "mt-6")}>
-              Check availability
+              Book a session
             </Link>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-xs text-muted sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-xs text-muted-deep sm:flex-row">
           <p>© {year} Timeless Visuals. All rights reserved.</p>
-          <p className="flex items-center gap-1.5">
-            <AtSign className="h-3.5 w-3.5" />
-            {SITE.instagram} — capturing moments that last forever.
-          </p>
+          <a
+            href={SITE.socials[0].href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-ink"
+          >
+            {SITE.instagram}
+          </a>
         </div>
       </Container>
     </footer>

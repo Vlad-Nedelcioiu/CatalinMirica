@@ -1,11 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Star } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { Photo } from "@/components/site/Photo";
 import { Reveal } from "@/components/site/Reveal";
 import { buttonClasses } from "@/components/ui/Button";
 import { HERO_PHOTOS, SITE } from "@/lib/content";
-import { cn, unsplash } from "@/lib/utils";
+import { unsplash } from "@/lib/utils";
 
 export function Hero() {
   return (
@@ -19,7 +19,7 @@ export function Hero() {
       <Container className="relative pt-12 sm:pt-16">
         <Reveal>
           <p className="eyebrow flex items-center gap-3">
-            <span className="h-px w-8 bg-brass" />
+            <span aria-hidden className="h-px w-8 bg-brass-deep" />
             Event Photography &amp; Videography
           </p>
         </Reveal>
@@ -41,15 +41,15 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.15} className="flex shrink-0 flex-wrap items-center gap-3">
-            <Link href="/booking" className={buttonClasses({ size: "lg" })}>
-              Book a session
-            </Link>
-            <Link
-              href="/portfolio"
-              className={buttonClasses({ variant: "outline", size: "lg" })}
-            >
+            <Link href="/portfolio" className={buttonClasses({ size: "lg" })}>
               View portfolio
               <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/booking"
+              className={buttonClasses({ variant: "outline", size: "lg" })}
+            >
+              Book a session
             </Link>
           </Reveal>
         </div>
@@ -58,18 +58,11 @@ export function Hero() {
       {/* Image triptych */}
       <Container className="mt-12 sm:mt-16">
         <Reveal delay={0.1} y={36}>
+          {/* Main image leads in source order so the 2-col mobile grid fills
+              without holes; lg:order-* restores the desktop triptych. */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-12">
-            <figure className="relative col-span-1 h-56 overflow-hidden rounded-2xl sm:h-80 lg:col-span-3 lg:h-[30rem]">
-              <Image
-                src={unsplash(HERO_PHOTOS.a, 900)}
-                alt="Outdoor wedding ceremony captured by Timeless Visuals"
-                fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
-            </figure>
-            <figure className="relative col-span-2 h-64 overflow-hidden rounded-2xl sm:h-96 lg:col-span-6 lg:h-[30rem]">
-              <Image
+            <figure className="relative col-span-2 h-64 overflow-hidden rounded-2xl sm:h-96 lg:order-2 lg:col-span-6 lg:h-[30rem]">
+              <Photo
                 src={unsplash(HERO_PHOTOS.main, 1400)}
                 alt="Couple sharing a first dance, photographed by Timeless Visuals"
                 fill
@@ -81,8 +74,17 @@ export function Hero() {
                 Santorini, 2023
               </figcaption>
             </figure>
-            <figure className="relative col-span-1 h-56 overflow-hidden rounded-2xl sm:h-80 lg:col-span-3 lg:h-[30rem]">
-              <Image
+            <figure className="relative col-span-1 h-56 overflow-hidden rounded-2xl sm:h-80 lg:order-1 lg:col-span-3 lg:h-[30rem]">
+              <Photo
+                src={unsplash(HERO_PHOTOS.a, 900)}
+                alt="Outdoor wedding ceremony captured by Timeless Visuals"
+                fill
+                sizes="(max-width: 1024px) 50vw, 25vw"
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative col-span-1 h-56 overflow-hidden rounded-2xl sm:h-80 lg:order-3 lg:col-span-3 lg:h-[30rem]">
+              <Photo
                 src={unsplash(HERO_PHOTOS.b, 900)}
                 alt="Wedding reception details photographed by Timeless Visuals"
                 fill
@@ -104,7 +106,7 @@ export function Hero() {
               </span>
               Rated 5.0 across 180+ reviews
             </p>
-            <p className={cn("text-muted")}>
+            <p className="text-muted-deep">
               Based in San Francisco · Available worldwide · Since {SITE.foundedYear}
             </p>
           </div>

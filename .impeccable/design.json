@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-14T10:30:00Z",
+  "title": "Design System: Timeless Visuals",
+  "extensions": {
+    "colorMeta": {
+      "brass-foil": {
+        "role": "primary",
+        "displayName": "Brass Foil",
+        "canonical": "#a9743f",
+        "tonalRamp": ["oklch(15% 0.05 65)", "oklch(26% 0.07 65)", "oklch(38% 0.08 65)", "oklch(50% 0.09 65)", "oklch(58% 0.09 65)", "oklch(70% 0.08 65)", "oklch(83% 0.05 65)", "oklch(95% 0.02 65)"]
+      },
+      "brass-deep": {
+        "role": "primary",
+        "displayName": "Deep Brass",
+        "canonical": "#8a5a2b",
+        "tonalRamp": ["oklch(15% 0.05 65)", "oklch(26% 0.07 65)", "oklch(38% 0.08 65)", "oklch(49% 0.09 65)", "oklch(58% 0.09 65)", "oklch(70% 0.08 65)", "oklch(83% 0.05 65)", "oklch(95% 0.02 65)"]
+      },
+      "brushed-brass": {
+        "role": "primary",
+        "displayName": "Brushed Brass",
+        "canonical": "#c79a64",
+        "tonalRamp": ["oklch(15% 0.04 70)", "oklch(27% 0.06 70)", "oklch(40% 0.07 70)", "oklch(52% 0.08 70)", "oklch(70% 0.08 70)", "oklch(78% 0.07 70)", "oklch(87% 0.05 70)", "oklch(95% 0.02 70)"]
+      },
+      "linen-cream": {
+        "role": "neutral",
+        "displayName": "Linen Cream",
+        "canonical": "#faf7f1",
+        "tonalRamp": ["oklch(15% 0.006 85)", "oklch(28% 0.007 85)", "oklch(42% 0.008 85)", "oklch(56% 0.009 85)", "oklch(70% 0.009 85)", "oklch(82% 0.009 85)", "oklch(91% 0.008 85)", "oklch(97.5% 0.008 85)"]
+      },
+      "album-white": {
+        "role": "neutral",
+        "displayName": "Album White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(93% 0 0)", "oklch(100% 0 0)"]
+      },
+      "pressed-sand": {
+        "role": "neutral",
+        "displayName": "Pressed Sand",
+        "canonical": "#f1ebe1",
+        "tonalRamp": ["oklch(15% 0.01 80)", "oklch(28% 0.012 80)", "oklch(42% 0.014 80)", "oklch(56% 0.015 80)", "oklch(70% 0.015 80)", "oklch(82% 0.014 80)", "oklch(90% 0.012 80)", "oklch(95% 0.01 80)"]
+      },
+      "charcoal-ink": {
+        "role": "neutral",
+        "displayName": "Charcoal Ink",
+        "canonical": "#1b1916",
+        "tonalRamp": ["oklch(19% 0.008 80)", "oklch(28% 0.008 80)", "oklch(38% 0.008 80)", "oklch(48% 0.008 80)", "oklch(60% 0.008 80)", "oklch(72% 0.008 80)", "oklch(85% 0.008 80)", "oklch(95% 0.006 80)"]
+      },
+      "soft-ink": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#4b4740",
+        "tonalRamp": ["oklch(15% 0.008 80)", "oklch(24% 0.009 80)", "oklch(37% 0.01 80)", "oklch(48% 0.01 80)", "oklch(60% 0.01 80)", "oklch(73% 0.009 80)", "oklch(85% 0.008 80)", "oklch(95% 0.006 80)"]
+      },
+      "faded-caption": {
+        "role": "neutral",
+        "displayName": "Faded Caption",
+        "canonical": "#8b857a",
+        "tonalRamp": ["oklch(15% 0.008 85)", "oklch(26% 0.01 85)", "oklch(38% 0.012 85)", "oklch(50% 0.013 85)", "oklch(60% 0.013 85)", "oklch(72% 0.012 85)", "oklch(84% 0.01 85)", "oklch(95% 0.008 85)"]
+      },
+      "deep-caption": {
+        "role": "neutral",
+        "displayName": "Deep Caption",
+        "canonical": "#6b665e",
+        "tonalRamp": ["oklch(15% 0.008 85)", "oklch(26% 0.01 85)", "oklch(38% 0.012 85)", "oklch(48% 0.012 85)", "oklch(60% 0.013 85)", "oklch(72% 0.012 85)", "oklch(84% 0.01 85)", "oklch(95% 0.008 85)"]
+      },
+      "deckle-line": {
+        "role": "neutral",
+        "displayName": "Deckle Line",
+        "canonical": "#e7e0d4",
+        "tonalRamp": ["oklch(15% 0.01 85)", "oklch(28% 0.012 85)", "oklch(42% 0.015 85)", "oklch(55% 0.016 85)", "oklch(68% 0.016 85)", "oklch(80% 0.015 85)", "oklch(90% 0.014 85)", "oklch(96% 0.01 85)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only; may carry a single brass italic word." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings, always with text-balance." },
+      "title": { "displayName": "Title", "purpose": "Card and article headings." },
+      "body": { "displayName": "Body", "purpose": "Leads in Soft Ink at 16-18px; supporting copy at 14px; measure ≤ 65-75ch." },
+      "label": { "displayName": "Label / Eyebrow", "purpose": "The brass tracked-caps kicker; field labels use the quieter 0.14em Soft Ink variant." }
+    },
+    "shadows": [
+      { "name": "card-lift", "value": "0 12px 40px -24px rgba(27, 25, 22, 0.28)", "purpose": "Hover state for interactive cards; resting state for primary/brass buttons." },
+      { "name": "soft-plate", "value": "0 18px 50px -28px rgba(27, 25, 22, 0.35)", "purpose": "Large floating imagery or hero plates that must separate from the page." }
+    ],
+    "motion": [
+      { "name": "ease-out-soft", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default easing for all transitions and reveals." },
+      { "name": "reveal", "value": "opacity 0→1, translateY 26px→0, 0.7s ease-out-soft, once, -80px margin", "purpose": "Signature section entrance; 0.05–0.07s sibling stagger." },
+      { "name": "kenburns", "value": "scale 1.05→1.16 over 18s ease-out", "purpose": "Hero image cinematic zoom; one per page." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The standard CTA: charcoal ink pill with cream text.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Book a session</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 9999px; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.025em; padding: 12px 24px; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-primary { background: #1b1916; color: #faf7f1; box-shadow: 0 12px 40px -24px rgba(27, 25, 22, 0.28); } .ds-btn-primary:hover { background: rgba(27, 25, 22, 0.9); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #faf7f1, 0 0 0 4px rgba(169, 116, 63, 0.5); }"
+    },
+    {
+      "name": "Brass Button",
+      "kind": "button",
+      "refersTo": "button-brass",
+      "description": "The one foil-stamped CTA per view.",
+      "html": "<button class=\"ds-btn2 ds-btn-brass\">Reserve your date</button>",
+      "css": ".ds-btn2 { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 9999px; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.025em; padding: 12px 24px; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-brass { background: #a9743f; color: #ffffff; box-shadow: 0 12px 40px -24px rgba(27, 25, 22, 0.28); } .ds-btn-brass:hover { background: rgba(169, 116, 63, 0.9); } .ds-btn-brass:focus-visible { outline: none; box-shadow: 0 0 0 2px #faf7f1, 0 0 0 4px rgba(169, 116, 63, 0.5); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action; hover inverts to full ink.",
+      "html": "<button class=\"ds-btn3 ds-btn-outline\">View portfolio</button>",
+      "css": ".ds-btn3 { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 9999px; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.025em; padding: 12px 24px; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-outline { background: transparent; color: #1b1916; border: 1px solid rgba(27, 25, 22, 0.25); } .ds-btn-outline:hover { border-color: #1b1916; background: #1b1916; color: #faf7f1; } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px #faf7f1, 0 0 0 4px rgba(169, 116, 63, 0.5); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Labeled input: white fill, deckle hairline, brass focus.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-name\">Full name<span class=\"ds-field-req\"> *</span></label><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\"Jane Appleseed\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: Inter, system-ui, sans-serif; } .ds-field-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: #4b4740; } .ds-field-req { color: #8a5a2b; } .ds-input { width: 100%; border-radius: 20px; border: 1px solid #e7e0d4; background: #ffffff; padding: 12px 16px; font-size: 14px; color: #1b1916; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); outline: none; transition: border-color 0.2s, box-shadow 0.2s; } .ds-input::placeholder { color: #6b665e; } .ds-input:focus { border-color: #a9743f; box-shadow: 0 0 0 2px rgba(169, 116, 63, 0.2); }"
+    },
+    {
+      "name": "Brass Badge",
+      "kind": "chip",
+      "refersTo": "badge-neutral",
+      "description": "Tinted pill tag for categories and statuses.",
+      "html": "<span class=\"ds-badge ds-badge-brass\">Weddings</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 9999px; padding: 4px 12px; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.025em; border: 1px solid; } .ds-badge-brass { background: rgba(169, 116, 63, 0.1); border-color: rgba(169, 116, 63, 0.3); color: #8a5a2b; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Content frame: flat at rest, lifts with brass border on hover.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-card-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/></svg></span><h3 class=\"ds-card-title\">Wedding Photography</h3><p class=\"ds-card-body\">Documentary-led coverage of your day — candid emotion, fine details, and portraits that feel like you.</p></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; border-radius: 16px; border: 1px solid #e7e0d4; background: rgba(250, 247, 241, 0.6); padding: 24px; max-width: 300px; font-family: Inter, system-ui, sans-serif; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-card:hover { transform: translateY(-4px); border-color: rgba(169, 116, 63, 0.4); box-shadow: 0 12px 40px -24px rgba(27, 25, 22, 0.28); } .ds-card-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #1b1916; color: #faf7f1; transition: background 0.3s; } .ds-card:hover .ds-card-icon { background: #a9743f; } .ds-card-title { margin: 20px 0 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 500; color: #1b1916; } .ds-card-body { margin: 10px 0 0; font-size: 14px; line-height: 1.625; color: #4b4740; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "label",
+      "description": "Underline-on-hover text link; active route holds brass.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-active\" href=\"#\">Home</a><a class=\"ds-nav-link\" href=\"#\">Portfolio</a><a class=\"ds-nav-link\" href=\"#\">Booking</a><a class=\"ds-nav-link\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 36px; font-family: Inter, system-ui, sans-serif; } .ds-nav-link { position: relative; font-size: 14px; font-weight: 500; color: #4b4740; text-decoration: none; transition: color 0.2s; } .ds-nav-link::after { content: ''; position: absolute; left: 0; bottom: -2px; height: 1px; width: 100%; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); } .ds-nav-link:hover { color: #1b1916; } .ds-nav-link:hover::after { transform: scaleX(1); } .ds-nav-link:focus-visible { outline: 2px solid rgba(169, 116, 63, 0.5); outline-offset: 3px; border-radius: 2px; } .ds-nav-active { color: #8a5a2b; }"
+    },
+    {
+      "name": "Eyebrow Kicker",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "The brand's one sanctioned kicker: hairline dash + brass tracked caps.",
+      "html": "<p class=\"ds-eyebrow\"><span class=\"ds-eyebrow-dash\"></span>What we do</p>",
+      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 12px; margin: 0; font-family: Inter, system-ui, sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #8a5a2b; } .ds-eyebrow-dash { display: inline-block; width: 32px; height: 1px; background: #8a5a2b; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Heirloom Album",
+    "overview": "Every screen is a spread in a hand-bound wedding album: linen-cream pages, brass foil stamping, serif captions set with care. The system's job is to feel kept, not scrolled past — unhurried, refined, and quiet enough that the photography supplies all the drama. Chrome recedes; the work is the subject. This is a studio presenting its way of seeing, and the site's own craft is the first proof of that eye.\n\nThe system explicitly rejects the four failure modes named in PRODUCT.md: the generic template look (interchangeable agency sections, icon grids), the cheesy wedding-vendor aesthetic (script fonts, rose gold, hearts), dark moody luxury (near-black + gold exclusivity), and anything trendy / maximalist that will date. Timelessness is the brand promise, so the system optimizes for how it will look in twenty years, not twenty weeks.\n\nDensity is low and pacing is deliberate: one dominant idea per fold, generous section spacing (5–7rem vertical), a 72rem content column, and photography given full-bleed or near-full-bleed room whenever it appears.",
+    "keyCharacteristics": [
+      "Warm paper-and-ink neutrals; brass used like foil stamping — rare and precise",
+      "Serif display (Playfair Display) for voice, quiet sans (Inter) for everything functional",
+      "Pill-shaped interactive elements against soft-rectangle content frames",
+      "Flat at rest; soft ambient shadow only as interaction feedback",
+      "Motion is a slow exhale: soft fades, gentle rises, one cinematic ken-burns zoom"
+    ],
+    "rules": [
+      { "name": "The Foil Stamp Rule", "body": "Brass appears on well under 10% of any screen, applied with the precision of foil stamping: one italic word, one icon, one ring. If brass starts covering areas instead of details, it has stopped being foil.", "section": "colors" },
+      { "name": "The Photograph Owns the Color Rule", "body": "The UI palette stays paper-quiet because the photography supplies the color. No new saturated hues enter the system; if a screen feels colorless, the fix is imagery, never chrome.", "section": "colors" },
+      { "name": "The One Italic Rule", "body": "A display heading earns at most one italicized, brass-colored word — the emotional pivot ('memories'). Two makes it a costume.", "section": "typography" },
+      { "name": "The Eyebrow Is the Signature Rule", "body": "The brass tracked-caps eyebrow is this brand's one sanctioned kicker format. Use it as designed (hairline dash + label, Deep Brass) or not at all; never invent a second kicker style. Budget: at most 3 per page — it orients, it does not scaffold every section.", "section": "typography" },
+      { "name": "The Flat-at-Rest Rule", "body": "Depth is interaction feedback, never decoration. If a static, non-interactive element has a shadow, remove it.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do let photography carry every screen's visual weight — full-bleed or generously framed imagery, with chrome in paper neutrals around it.",
+      "Do apply brass like foil stamping: one italic display word, icons, rings, and rare filled CTAs — under 10% of any screen.",
+      "Do use Soft Ink (#4b4740) for any text that must actually be read; it clears AA at 8.5:1 on cream.",
+      "Do keep interactive elements pill-shaped and content frames soft-rectangled — the shape contrast is the affordance system.",
+      "Do give every animation its reduced-motion collapse (the global rule exists; don't bypass it with JS-driven motion).",
+      "Do write alt text in the brand voice: 'Couple sharing a first dance' beats 'wedding photo'."
+    ],
+    "donts": [
+      "Don't drift into the generic template look — interchangeable icon grids, stock section rhythms, could-be-anyone layouts (PRODUCT.md anti-reference #1).",
+      "Don't touch cheesy wedding-vendor moves: script fonts, rose gold, heart motifs, sentimental clip-art (anti-reference #2).",
+      "Don't slide into dark moody luxury: no near-black page backgrounds, no gold-on-black exclusivity (anti-reference #3). Ink is for text and small fills, never for whole viewports.",
+      "Don't adopt trendy / maximalist effects — loud gradients, oversized type experiments, brutalist or acid aesthetics (anti-reference #4). If it would date a printed album, it dates this site.",
+      "Don't set small text in Faded Caption (#8b857a) or Brass Foil (#a9743f) — both fail 4.5:1 on cream. The AA-safe steps exist for exactly this: Deep Caption (#6b665e) for metadata, Deep Brass (#8a5a2b) for brass-voiced labels.",
+      "Don't add shadows to static elements, borders thicker than 1px, or a second accent hue. One foil, one line weight, flat at rest.",
+      "Don't exceed one brass-filled button per view or one italic word per heading. Rarity is the entire mechanism."
+    ]
+  }
+}

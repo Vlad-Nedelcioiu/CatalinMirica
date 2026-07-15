@@ -3,6 +3,9 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { MotionProvider } from "@/components/site/MotionProvider";
+import { HERO_PHOTOS } from "@/lib/content";
+import { unsplash } from "@/lib/utils";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -39,6 +42,14 @@ export const metadata: Metadata = {
     description:
       "Weddings, concerts, corporate events and portraits captured with a calm, cinematic eye.",
     siteName: "Timeless Visuals",
+    images: [
+      {
+        url: `${unsplash(HERO_PHOTOS.main, 1200)}&h=630`,
+        width: 1200,
+        height: 630,
+        alt: "Couple sharing a first dance, photographed by Timeless Visuals",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -60,9 +71,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="flex min-h-dvh flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {/* Without JS, framer-motion's server-rendered initial styles would
+            leave revealed content invisible; force it visible. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-cream"
+        >
+          Skip to content
+        </a>
+        <MotionProvider>
+          <Navbar />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

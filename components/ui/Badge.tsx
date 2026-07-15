@@ -11,7 +11,7 @@ export function Badge({
 }) {
   const tones = {
     neutral: "border-line bg-paper text-ink-soft",
-    brass: "border-brass/30 bg-brass/10 text-brass",
+    brass: "border-brass/30 bg-brass/10 text-brass-deep",
     ink: "border-transparent bg-ink text-cream",
   };
   return (

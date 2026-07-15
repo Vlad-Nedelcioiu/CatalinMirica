@@ -9,10 +9,15 @@ type RevealProps = {
   y?: number;
 } & Omit<HTMLMotionProps<"div">, "initial" | "whileInView" | "viewport" | "transition">;
 
-/** Fade + slide content into view once, respecting reduced-motion via CSS. */
+/**
+ * Fade + slide content into view once. Reduced-motion is honoured by the
+ * MotionProvider (MotionConfig reducedMotion="user") in the root layout;
+ * `data-reveal` lets the layout's <noscript> rule force visibility without JS.
+ */
 export function Reveal({ children, className, delay = 0, y = 26, ...props }: RevealProps) {
   return (
     <motion.div
+      data-reveal
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}

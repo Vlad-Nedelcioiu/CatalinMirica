@@ -22,7 +22,7 @@ export function Process() {
           />
           {PROCESS.map((p, i) => (
             <Reveal key={p.step} delay={i * 0.08} className="relative">
-              <div className="grid h-14 w-14 place-items-center rounded-full border border-line bg-cream font-display text-lg text-brass">
+              <div className="grid h-14 w-14 place-items-center rounded-full border border-line bg-cream font-display text-lg text-brass-deep">
                 {p.step}
               </div>
               <h3 className="mt-5 text-xl">{p.title}</h3>

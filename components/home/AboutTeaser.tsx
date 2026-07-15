@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/components/site/Section";
 import { Container } from "@/components/site/Container";
+import { Photo } from "@/components/site/Photo";
 import { Reveal } from "@/components/site/Reveal";
 import { ABOUT_PHOTO, SITE } from "@/lib/content";
 import { unsplash } from "@/lib/utils";
@@ -19,8 +19,8 @@ export function AboutTeaser() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal y={36}>
             <div className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
-                <Image
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+                <Photo
                   src={unsplash(ABOUT_PHOTO, 1000)}
                   alt="Behind the scenes with the Timeless Visuals crew"
                   fill
@@ -28,16 +28,15 @@ export function AboutTeaser() {
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-2 hidden rounded-2xl border border-line bg-cream px-6 py-5 shadow-soft sm:block">
+              <div className="absolute -bottom-6 -right-2 hidden rounded-2xl border border-line bg-cream px-6 py-5 sm:block">
                 <p className="font-display text-3xl text-brass">{SITE.foundedYear}</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted">Est. in SF</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-deep">Est. in SF</p>
               </div>
             </div>
           </Reveal>
 
           <div>
             <Reveal>
-              <p className="eyebrow mb-4">The studio</p>
               <h2 className="text-balance text-3xl leading-tight sm:text-4xl">
                 A small crew with a cinematic obsession.
               </h2>

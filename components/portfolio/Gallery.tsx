@@ -21,9 +21,16 @@ function aspectFor(span?: "tall" | "wide") {
   return "aspect-square";
 }
 
-export function Gallery() {
+export function Gallery({ initialItemId }: { initialItemId?: string }) {
   const [filter, setFilter] = useState<Filter>("All");
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  // Deep links (e.g. /portfolio?item=w4 from a featured card) open the
+  // lightbox straight onto that story; the filter starts at "All" so the
+  // index lines up with the unfiltered list.
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(() => {
+    if (!initialItemId) return null;
+    const i = PORTFOLIO.findIndex((p) => p.id === initialItemId);
+    return i === -1 ? null : i;
+  });
 
   const items = useMemo<PortfolioItem[]>(
     () => (filter === "All" ? PORTFOLIO : PORTFOLIO.filter((p) => p.category === filter)),

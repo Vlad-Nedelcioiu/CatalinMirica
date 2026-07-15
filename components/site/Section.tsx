@@ -34,8 +34,19 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
-      <h2 className="text-balance text-3xl leading-tight sm:text-4xl md:text-[2.75rem]">
+      {eyebrow ? (
+        <p
+          className={cn(
+            "eyebrow mb-4 flex items-center gap-3",
+            align === "center" && "justify-center",
+          )}
+        >
+          <span aria-hidden className="h-px w-8 bg-brass-deep" />
+          {eyebrow}
+          {align === "center" ? <span aria-hidden className="h-px w-8 bg-brass-deep" /> : null}
+        </p>
+      ) : null}
+      <h2 className="text-balance text-3xl leading-tight sm:text-4xl md:text-headline">
         {title}
       </h2>
       {lead ? (

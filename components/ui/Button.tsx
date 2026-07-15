@@ -10,7 +10,7 @@ const variants: Record<ButtonVariant, string> = {
   primary: "bg-ink text-cream hover:bg-ink/90 shadow-card",
   brass: "bg-brass text-white hover:bg-brass/90 shadow-card",
   outline: "border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-cream",
-  ghost: "text-ink hover:text-brass",
+  ghost: "text-ink hover:text-brass-deep",
 };
 
 const sizes: Record<ButtonSize, string> = {

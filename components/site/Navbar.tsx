@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Aperture, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
@@ -19,6 +19,8 @@ export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -38,11 +40,41 @@ export function Navbar() {
     };
   }, [open]);
 
+  // While the mobile menu is open: Escape closes it (returning focus to the
+  // toggle) and Tab is kept inside the header, since the page behind is inert.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !headerRef.current) return;
+      const focusables = headerRef.current.querySelectorAll<HTMLElement>(
+        "a[href], button:not([disabled])",
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "sticky top-0 z-50 transition-all duration-500",
         scrolled || open
@@ -57,7 +89,7 @@ export function Navbar() {
           </span>
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg tracking-tight">Timeless Visuals</span>
-            <span className="text-[0.6rem] font-medium uppercase tracking-[0.32em] text-muted">
+            <span className="text-2xs font-medium uppercase tracking-[0.32em] text-ink-soft">
               Photo &amp; Film
             </span>
           </span>
@@ -71,7 +103,7 @@ export function Navbar() {
               href={l.href}
               className={cn(
                 "link-underline text-sm font-medium transition-colors",
-                isActive(l.href) ? "text-brass" : "text-ink-soft hover:text-ink",
+                isActive(l.href) ? "text-brass-deep" : "text-ink-soft hover:text-ink",
               )}
             >
               {l.label}
@@ -80,10 +112,14 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/booking" className={cn(buttonClasses({ size: "sm" }), "hidden sm:inline-flex")}>
-            Book a Session
+          <Link
+            href="/booking"
+            className={cn(buttonClasses({ size: "sm" }), "hidden min-[400px]:inline-flex")}
+          >
+            Book a session
           </Link>
           <button
+            ref={toggleRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink md:hidden"
@@ -109,14 +145,14 @@ export function Navbar() {
               href={l.href}
               className={cn(
                 "rounded-lg px-3 py-3 font-display text-2xl transition-colors",
-                isActive(l.href) ? "text-brass" : "text-ink hover:text-brass",
+                isActive(l.href) ? "text-brass-deep" : "text-ink hover:text-brass-deep",
               )}
             >
               {l.label}
             </Link>
           ))}
           <Link href="/booking" className={cn(buttonClasses({ size: "md" }), "mt-3 w-full")}>
-            Book a Session
+            Book a session
           </Link>
         </Container>
       </div>

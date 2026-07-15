@@ -3,7 +3,7 @@
 A complete, modern website for **Timeless Visuals** — an events photography &
 videography studio. Built with the latest stack and a light, editorial aesthetic.
 
-- **Home** — cinematic hero, services, featured work, process, animated stats, testimonials
+- **Home** — cinematic hero, featured work, photo-led services, process, testimonials
 - **Portfolio** — category-filterable gallery with a full-screen lightbox (keyboard + arrow nav)
 - **Contact** — validated contact form (persisted), studio details, map, FAQ accordion
 - **Booking** — multi-step flow with a real **availability calendar** (one booking per day),
@@ -84,7 +84,7 @@ components/
   home/         home-page sections
   portfolio/    Gallery + Lightbox
   contact/      ContactForm + Accordion
-  booking/      BookingFlow, Calendar, TimeSlots, PackagePicker, BookingForm, Confirmation
+  booking/      BookingFlow, Calendar, TimePicker, PackagePicker, BookingForm, Confirmation
 lib/            content.ts (data), store.ts (persistence), utils.ts (helpers)
 data/           runtime JSON store (git-ignored, auto-created)
 ```
