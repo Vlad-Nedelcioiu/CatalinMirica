@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Aperture, Menu, X } from "lucide-react";
+import { Camera, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
 import { buttonClasses } from "@/components/ui/Button";
@@ -83,12 +83,15 @@ export function Navbar() {
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2.5" aria-label="Timeless Visuals home">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-cream transition-colors group-hover:bg-brass">
-            <Aperture className="h-5 w-5" strokeWidth={1.5} />
+        <Link href="/" className="group flex items-center gap-3" aria-label="Timeless Visuals home">
+          <span
+            data-logo-mark
+            className="grid h-11 w-11 place-items-center rounded-full bg-ink text-cream transition-colors group-hover:bg-brass"
+          >
+            <Camera className="h-6 w-6" strokeWidth={1.5} />
           </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-lg tracking-tight">Timeless Visuals</span>
+          <span className="flex flex-col gap-0.5 leading-none">
+            <span className="font-display text-xl tracking-tight">Timeless Visuals</span>
             <span className="text-2xs font-medium uppercase tracking-[0.32em] text-ink-soft">
               Photo &amp; Film
             </span>

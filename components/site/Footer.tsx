@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Aperture, Mail, MapPin, Phone } from "lucide-react";
+import { Camera, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "./Container";
 import { SITE } from "@/lib/content";
 import { buttonClasses } from "@/components/ui/Button";
@@ -14,11 +14,11 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-cream">
-                <Aperture className="h-5 w-5" strokeWidth={1.5} />
+            <Link href="/" className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-ink text-cream">
+                <Camera className="h-6 w-6" strokeWidth={1.5} />
               </span>
-              <span className="font-display text-lg tracking-tight">Timeless Visuals</span>
+              <span className="font-display text-xl tracking-tight">Timeless Visuals</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-soft">
               An events photography &amp; videography studio capturing weddings, concerts,

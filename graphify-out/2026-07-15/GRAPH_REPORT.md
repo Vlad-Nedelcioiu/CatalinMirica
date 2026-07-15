@@ -1,11 +1,11 @@
 # Graph Report - CatalinMirica  (2026-07-15)
 
 ## Corpus Check
-- 53 files · ~20,410 words
+- 53 files · ~20,265 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 344 nodes · 676 edges · 16 communities (13 shown, 3 thin omitted)
+- 343 nodes · 674 edges · 16 communities (13 shown, 3 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.89)
 - Token cost: 0 input · 0 output
 
@@ -68,8 +68,8 @@
 ## Communities (16 total, 3 thin omitted)
 
 ### Community 0 - "Pages & Home Sections"
-Cohesion: 0.13
-Nodes (25): metadata, details, metadata, metadata, AboutTeaser(), highlights, CTASection(), featured (+17 more)
+Cohesion: 0.12
+Nodes (26): metadata, details, metadata, metadata, Accordion(), AboutTeaser(), highlights, CTASection() (+18 more)
 
 ### Community 1 - "Design Docs & Critique"
 Cohesion: 0.06
@@ -80,16 +80,16 @@ Cohesion: 0.11
 Nodes (33): AdminPage(), metadata, pkgName(), statusTone, when(), GET(), isDate(), isEmail() (+25 more)
 
 ### Community 3 - "Booking Flow UI"
-Cohesion: 0.13
-Nodes (27): BookingFlow(), initialDetails, isEmail(), STEPS, SummaryRow(), BookingDetails, BookingForm(), Calendar() (+19 more)
+Cohesion: 0.14
+Nodes (26): BookingFlow(), initialDetails, isEmail(), STEPS, SummaryRow(), BookingDetails, BookingForm(), Calendar() (+18 more)
 
 ### Community 4 - "TypeScript Config"
 Cohesion: 0.07
 Nodes (27): dom, dom.iterable, esnext, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, node_modules, **/*.ts (+19 more)
 
 ### Community 5 - "Layout, Gallery & Motion"
-Cohesion: 0.14
-Nodes (17): aspectFor(), Filter, filters, Gallery(), Lightbox(), FAQS, Package, PORTFOLIO (+9 more)
+Cohesion: 0.15
+Nodes (16): aspectFor(), Filter, filters, Gallery(), Lightbox(), Package, PORTFOLIO, PORTFOLIO_CATEGORIES (+8 more)
 
 ### Community 6 - "Package & Build Tooling"
 Cohesion: 0.08
@@ -104,8 +104,8 @@ Cohesion: 0.09
 Nodes (22): 1. Overview, 2. Colors: The Album Palette, 3. Typography, 4. Elevation, 5. Components, 6. Do's and Don'ts, Buttons, Cards / Containers (+14 more)
 
 ### Community 11 - "layout.tsx"
-Cohesion: 0.14
-Nodes (15): inter, metadata, playfair, viewport, Footer(), MotionProvider(), links, Navbar() (+7 more)
+Cohesion: 0.13
+Nodes (16): inter, metadata, playfair, viewport, Footer(), MotionProvider(), links, Navbar() (+8 more)
 
 ### Community 12 - "Product"
 Cohesion: 0.17
@@ -134,10 +134,10 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `metadata`, `statusTone`, `metadata` to the rest of the system?**
   _132 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Pages & Home Sections` be split into smaller, more focused modules?**
-  _Cohesion score 0.13232323232323231 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12210915818686402 - nodes in this community are weakly interconnected._
 - **Should `Design Docs & Critique` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `Admin & Booking API` be split into smaller, more focused modules?**
   _Cohesion score 0.11282051282051282 - nodes in this community are weakly interconnected._
 - **Should `Booking Flow UI` be split into smaller, more focused modules?**
-  _Cohesion score 0.1349527665317139 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14414414414414414 - nodes in this community are weakly interconnected._

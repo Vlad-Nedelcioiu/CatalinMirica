@@ -709,8 +709,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_contact_accordion",
-      "community": 3,
-      "community_name": "Booking Flow UI",
+      "community": 0,
+      "community_name": "Pages & Home Sections",
       "norm_label": "accordion.tsx"
     },
     {
@@ -720,8 +720,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "components_contact_accordion_accordion",
-      "community": 3,
-      "community_name": "Booking Flow UI",
+      "community": 0,
+      "community_name": "Pages & Home Sections",
       "norm_label": "accordion()"
     },
     {
@@ -1187,21 +1187,10 @@
       "norm_label": "pageflash.tsx"
     },
     {
-      "label": "flashTarget()",
-      "file_type": "code",
-      "source_file": "components/site/PageFlash.tsx",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "components_site_pageflash_flashtarget",
-      "community": 14,
-      "community_name": "template.tsx",
-      "norm_label": "flashtarget()"
-    },
-    {
       "label": "PageFlash()",
       "file_type": "code",
       "source_file": "components/site/PageFlash.tsx",
-      "source_location": "L29",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "components_site_pageflash_pageflash",
       "community": 14,
@@ -1457,8 +1446,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "lib_content_site",
-      "community": 0,
-      "community_name": "Pages & Home Sections",
+      "community": 11,
+      "community_name": "layout.tsx",
       "norm_label": "site"
     },
     {
@@ -1622,8 +1611,8 @@
       "source_location": "L243",
       "_origin": "ast",
       "id": "lib_content_faqs",
-      "community": 5,
-      "community_name": "Layout, Gallery & Motion",
+      "community": 0,
+      "community_name": "Pages & Home Sections",
       "norm_label": "faqs"
     },
     {
@@ -3409,8 +3398,8 @@
       "rationale": "Dual-agent critique (design-review + detector-evidence) of app/page.tsx scoring 24/40: system primitives are real and obeyed, but the page assembles them into the generic 2024-26 template scroll, undermining the brand for the design-literate audience the studio sells to.",
       "community": 1,
       "norm_label": "home page design critique (24/40)",
-      "community_name": "Design Docs & Critique",
-      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_home_page_critique"
+      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_home_page_critique",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "P1: Mobile Hero Grid Empty Holes",
@@ -3424,8 +3413,8 @@
       "rationale": "Hero.tsx:61 uses grid-cols-2 below lg with 1/2/1-span children in source order, leaving empty cells; matters because leads arrive warm from Instagram overwhelmingly on phones, so the first impression on the majority device looks broken.",
       "community": 1,
       "norm_label": "p1: mobile hero grid empty holes",
-      "community_name": "Design Docs & Critique",
-      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_mobile_hero_grid_holes"
+      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_mobile_hero_grid_holes",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "P1: Conversion Hierarchy Inverts Documented Strategy",
@@ -3439,8 +3428,8 @@
       "rationale": "Hero fills 'Book a session' and outlines the portfolio while PRODUCT.md's primary CTA is 'View portfolio'; four different labels (Book a Session, Book a session, See packages, Check availability) all route to /booking, breaking information scent with salesman-first ordering the brand rejects.",
       "community": 1,
       "norm_label": "p1: conversion hierarchy inverts documented strategy",
-      "community_name": "Design Docs & Critique",
-      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_conversion_hierarchy_inversion"
+      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_conversion_hierarchy_inversion",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "P1: WCAG AA Contrast Failures on Brass and Muted Text",
@@ -3454,8 +3443,8 @@
       "rationale": "Brass #a9743f eyebrows measure 3.74:1 on cream and muted #8b857a 3.43:1 against a needed 4.5:1, on real content; fix is a text-safe brass step (#8a5a2b = 5.49:1), moving muted text to text-ink-soft, and darkening placeholders.",
       "community": 1,
       "norm_label": "p1: wcag aa contrast failures on brass and muted text",
-      "community_name": "Design Docs & Critique",
-      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_wcag_contrast_failures"
+      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_wcag_contrast_failures",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "P1: Reduced-Motion Promise Not Kept / Opacity-0 Gating",
@@ -3469,8 +3458,8 @@
       "rationale": "The global CSS rule only neutralizes CSS animation; Framer Motion (every Reveal, testimonial crossfade, rAF counter) runs at full motion under prefers-reduced-motion, and initial opacity:0 server-renders below-fold content invisible for no-JS visitors; fix is MotionConfig reducedMotion='user' and a CSS-first default-visible reveal.",
       "community": 1,
       "norm_label": "p1: reduced-motion promise not kept / opacity-0 gating",
-      "community_name": "Design Docs & Critique",
-      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_reduced_motion_broken"
+      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p1_reduced_motion_broken",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "P2: Template Scaffolding (Eyebrow Saturation, Stat Band, Icon-Card Grid)",
@@ -3484,8 +3473,8 @@
       "rationale": "7 of 8 sections carry the eyebrow (5 in an unsanctioned dash-less format), Stats.tsx is the banned hero-metric template running placeholder numbers, Services.tsx is the banned identical icon-card grid; strategically the biggest opportunity \u2014 cut scaffolding, move the work up, make Services photo-led.",
       "community": 1,
       "norm_label": "p2: template scaffolding (eyebrow saturation, stat band, icon-card grid)",
-      "community_name": "Design Docs & Critique",
-      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p2_template_scaffolding"
+      "id": "_impeccable_critique_2026_07_14t09_32_03z__app_page_tsx_p2_template_scaffolding",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Design Context Prerequisite (read PRODUCT.md and DESIGN.md)",
@@ -3499,8 +3488,8 @@
       "rationale": "Any design or UI work must start from PRODUCT.md (strategy) and DESIGN.md (visual system) because the site's job is credibility, the primary CTA is 'View portfolio', and all testimonials/stats are placeholder that must never ship as real proof.",
       "community": 1,
       "norm_label": "design context prerequisite (read product.md and design.md)",
-      "community_name": "Design Docs & Critique",
-      "id": "claude_design_context_rule"
+      "id": "claude_design_context_rule",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Contrast Cautions (--color-muted and --color-brass fail 4.5:1 on cream)",
@@ -3514,8 +3503,8 @@
       "rationale": "--color-muted (#8b857a) and --color-brass (#a9743f) both fail 4.5:1 on cream, so neither may be used for small body text.",
       "community": 1,
       "norm_label": "contrast cautions (--color-muted and --color-brass fail 4.5:1 on cream)",
-      "community_name": "Design Docs & Critique",
-      "id": "claude_contrast_cautions"
+      "id": "claude_contrast_cautions",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Graphify Query-First Workflow",
@@ -3529,8 +3518,8 @@
       "rationale": "Codebase questions should hit graphify query/path/explain before grep because they return a scoped subgraph much smaller than GRAPH_REPORT.md or raw source; after code changes run graphify update (AST-only, no API cost).",
       "community": 1,
       "norm_label": "graphify query-first workflow",
-      "community_name": "Design Docs & Critique",
-      "id": "claude_graphify_workflow"
+      "id": "claude_graphify_workflow",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The Heirloom Album (Creative North Star)",
@@ -3544,8 +3533,8 @@
       "rationale": "Every screen is a spread in a hand-bound wedding album \u2014 linen-cream pages, brass foil stamping, serif captions; the system must feel kept, not scrolled past, because timelessness is the brand promise, so it optimizes for how it will look in twenty years and the site's own craft is the first proof of the studio's eye.",
       "community": 1,
       "norm_label": "the heirloom album (creative north star)",
-      "community_name": "Design Docs & Critique",
-      "id": "design_heirloom_album"
+      "id": "design_heirloom_album",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The Foil Stamp Rule",
@@ -3559,8 +3548,8 @@
       "rationale": "Brass appears on well under 10% of any screen, applied with foil-stamping precision (one italic word, one icon, one ring) because its rarity is its value \u2014 if brass covers areas instead of details it has stopped being foil.",
       "community": 1,
       "norm_label": "the foil stamp rule",
-      "community_name": "Design Docs & Critique",
-      "id": "design_foil_stamp_rule"
+      "id": "design_foil_stamp_rule",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The Photograph Owns the Color Rule",
@@ -3574,8 +3563,8 @@
       "rationale": "The UI palette stays paper-quiet because the photography supplies the color; no new saturated hues enter the system, and if a screen feels colorless the fix is imagery, never chrome.",
       "community": 1,
       "norm_label": "the photograph owns the color rule",
-      "community_name": "Design Docs & Critique",
-      "id": "design_photograph_owns_the_color_rule"
+      "id": "design_photograph_owns_the_color_rule",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The One Italic Rule",
@@ -3589,8 +3578,8 @@
       "rationale": "A display heading earns at most one italicized brass-colored word \u2014 the emotional pivot \u2014 because two makes it a costume.",
       "community": 1,
       "norm_label": "the one italic rule",
-      "community_name": "Design Docs & Critique",
-      "id": "design_one_italic_rule"
+      "id": "design_one_italic_rule",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The Eyebrow Is the Signature Rule",
@@ -3604,8 +3593,8 @@
       "rationale": "The brass tracked-caps eyebrow (hairline dash + label, Deep Brass) is the brand's one sanctioned kicker format with a budget of at most 3 per page \u2014 it orients, it does not scaffold every section; never invent a second kicker style.",
       "community": 1,
       "norm_label": "the eyebrow is the signature rule",
-      "community_name": "Design Docs & Critique",
-      "id": "design_eyebrow_signature_rule"
+      "id": "design_eyebrow_signature_rule",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The Flat-at-Rest Rule",
@@ -3619,8 +3608,8 @@
       "rationale": "Depth is interaction feedback, never decoration \u2014 surfaces at rest are separated by Deckle Line hairline borders and background tint steps, and any shadow on a static non-interactive element must be removed.",
       "community": 1,
       "norm_label": "the flat-at-rest rule",
-      "community_name": "Design Docs & Critique",
-      "id": "design_flat_at_rest_rule"
+      "id": "design_flat_at_rest_rule",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "The Album Palette (cream/ink neutrals + brass accent)",
@@ -3634,8 +3623,8 @@
       "rationale": "A restrained paper-and-ink palette (Linen Cream #faf7f1, Charcoal Ink #1b1916, Brass Foil #a9743f, plus AA-safe steps Deep Brass and Deep Caption) where photography carries the color and the UI supplies warmth and one metallic voice.",
       "community": 1,
       "norm_label": "the album palette (cream/ink neutrals + brass accent)",
-      "community_name": "Design Docs & Critique",
-      "id": "design_album_palette"
+      "id": "design_album_palette",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Deep Brass (#8a5a2b, text-safe brass step)",
@@ -3649,8 +3638,8 @@
       "rationale": "Exists at 5.5:1 on cream so the foil voice survives at caption scale (eyebrows, kicker dashes, step numbers) without breaking AA, since Brass Foil #a9743f sits at only 3.7:1.",
       "community": 1,
       "norm_label": "deep brass (#8a5a2b, text-safe brass step)",
-      "community_name": "Design Docs & Critique",
-      "id": "design_deep_brass"
+      "id": "design_deep_brass",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Deep Caption (#6b665e, readable metadata gray)",
@@ -3664,8 +3653,8 @@
       "rationale": "The AA-safe metadata gray (5.2:1 on cream) for trust rows, legal lines, testimonial roles and placeholders, because Faded Caption #8b857a at 3.4:1 fails AA and is reserved for decorative traces only.",
       "community": 1,
       "norm_label": "deep caption (#6b665e, readable metadata gray)",
-      "community_name": "Design Docs & Critique",
-      "id": "design_deep_caption"
+      "id": "design_deep_caption",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Playfair Display + Inter Editorial Pairing",
@@ -3679,8 +3668,8 @@
       "rationale": "A high-contrast transitional serif that reads like an album caption plate over a self-effacing sans that handles functional text without personality competition \u2014 the serif speaks, the sans serves.",
       "community": 1,
       "norm_label": "playfair display + inter editorial pairing",
-      "community_name": "Design Docs & Critique",
-      "id": "design_typography_pairing"
+      "id": "design_typography_pairing",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Reveal Motion Primitive (signature motion)",
@@ -3694,8 +3683,8 @@
       "rationale": "Every section enters through a fade + 26px rise (0.7s, once, optional sibling stagger) with one cinematic 18s ken-burns hero zoom, because motion is a slow exhale; a global prefers-reduced-motion rule is supposed to collapse all animation to near-instant.",
       "community": 1,
       "norm_label": "reveal motion primitive (signature motion)",
-      "community_name": "Design Docs & Critique",
-      "id": "design_reveal_motion"
+      "id": "design_reveal_motion",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Product Purpose: Close Warm Leads via Credibility",
@@ -3709,8 +3698,8 @@
       "rationale": "The site exists to close leads that originate elsewhere \u2014 referrals and social drive warm traffic \u2014 so success is credibility: the portfolio convinces, services show fit, and contact/booking make the next step easy; the /admin dashboard stays functional but explicitly secondary.",
       "community": 1,
       "norm_label": "product purpose: close warm leads via credibility",
-      "community_name": "Design Docs & Critique",
-      "id": "product_credibility_goal"
+      "id": "product_credibility_goal",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Primary CTA: View Portfolio",
@@ -3724,8 +3713,8 @@
       "rationale": "Lead visitors into the work first because the work does the selling; 'Get in touch / Book a session' is the secondary, low-pressure next step once convinced.",
       "community": 1,
       "norm_label": "primary cta: view portfolio",
-      "community_name": "Design Docs & Critique",
-      "id": "product_primary_cta_view_portfolio"
+      "id": "product_primary_cta_view_portfolio",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Belief Ladder (beautiful work \u2192 fits my event \u2192 reliable \u2192 easy to reach)",
@@ -3739,8 +3728,8 @@
       "rationale": "Four beliefs the site must build in order: the work is genuinely beautiful (portfolio), they can handle MY kind of event (breadth), they're reliable professionals (process/testimonials), and reaching out is easy and low-pressure (clear contact, transparent packages).",
       "community": 1,
       "norm_label": "belief ladder (beautiful work \u2192 fits my event \u2192 reliable \u2192 easy to reach)",
-      "community_name": "Design Docs & Critique",
-      "id": "product_belief_ladder"
+      "id": "product_belief_ladder",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Anti-Reference: Generic Template Look",
@@ -3754,8 +3743,8 @@
       "rationale": "Interchangeable agency/SaaS landing page \u2014 stock sections, icon grids, could be anyone's site \u2014 banned because a studio selling taste loses the sale at the aesthetic layer.",
       "community": 1,
       "norm_label": "anti-reference: generic template look",
-      "community_name": "Design Docs & Critique",
-      "id": "product_generic_template_look"
+      "id": "product_generic_template_look",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Anti-Reference: Cheesy Wedding-Vendor",
@@ -3769,8 +3758,8 @@
       "rationale": "Script fonts, rose gold, heart motifs, sentimental clip-art aesthetics \u2014 the opposite of the calm editorial register.",
       "community": 1,
       "norm_label": "anti-reference: cheesy wedding-vendor",
-      "community_name": "Design Docs & Critique",
-      "id": "product_cheesy_wedding_vendor"
+      "id": "product_cheesy_wedding_vendor",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Anti-Reference: Dark Moody Luxury",
@@ -3784,8 +3773,8 @@
       "rationale": "Near-black backgrounds, gold serif, exclusive-hotel vibes \u2014 ink is for text and small fills, never whole viewports.",
       "community": 1,
       "norm_label": "anti-reference: dark moody luxury",
-      "community_name": "Design Docs & Critique",
-      "id": "product_dark_moody_luxury"
+      "id": "product_dark_moody_luxury",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Anti-Reference: Trendy / Maximalist",
@@ -3799,8 +3788,8 @@
       "rationale": "Loud gradients, oversized type experiments, brutalist or acid aesthetics that date quickly \u2014 if it would date a printed album, it dates this site.",
       "community": 1,
       "norm_label": "anti-reference: trendy / maximalist",
-      "community_name": "Design Docs & Critique",
-      "id": "product_trendy_maximalist"
+      "id": "product_trendy_maximalist",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Design Principle 1: The Work Does the Talking",
@@ -3814,8 +3803,8 @@
       "rationale": "Layout, chrome, and copy defer to the photography \u2014 the site is the portfolio's frame, never its competitor.",
       "community": 1,
       "norm_label": "design principle 1: the work does the talking",
-      "community_name": "Design Docs & Critique",
-      "id": "product_the_work_does_the_talking"
+      "id": "product_the_work_does_the_talking",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Design Principle 2: The Site Is Itself the Proof",
@@ -3829,8 +3818,8 @@
       "rationale": "A studio selling taste must demonstrate taste \u2014 every detail of the site's craft is a credibility signal for a design-literate audience.",
       "community": 1,
       "norm_label": "design principle 2: the site is itself the proof",
-      "community_name": "Design Docs & Critique",
-      "id": "product_site_is_the_proof"
+      "id": "product_site_is_the_proof",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Design Principle 3: Calm Confidence, Never Salesmanship",
@@ -3844,8 +3833,8 @@
       "rationale": "No urgency tricks, no hard sells \u2014 unhurried pacing and transparent packages are the persuasion.",
       "community": 1,
       "norm_label": "design principle 3: calm confidence, never salesmanship",
-      "community_name": "Design Docs & Critique",
-      "id": "product_calm_confidence_never_salesmanship"
+      "id": "product_calm_confidence_never_salesmanship",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Design Principle 4: Breadth Without Dilution",
@@ -3859,8 +3848,8 @@
       "rationale": "Show range across weddings, corporate, concerts, and portraits while keeping one coherent voice, because no single client type dominates.",
       "community": 1,
       "norm_label": "design principle 4: breadth without dilution",
-      "community_name": "Design Docs & Critique",
-      "id": "product_breadth_without_dilution"
+      "id": "product_breadth_without_dilution",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Design Principle 5: Never Fake the Proof (placeholder testimonials/stats)",
@@ -3874,8 +3863,8 @@
       "rationale": "Current testimonials, review counts ('5.0 across 180+ reviews') and stats are scaffold copy; real proof must be collected into .impeccable/assets/proof/ and swapped in before launch \u2014 invented proof must never ship.",
       "community": 1,
       "norm_label": "design principle 5: never fake the proof (placeholder testimonials/stats)",
-      "community_name": "Design Docs & Critique",
-      "id": "product_never_fake_the_proof"
+      "id": "product_never_fake_the_proof",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "WCAG 2.2 AA Commitment",
@@ -3889,8 +3878,8 @@
       "rationale": "At least 4.5:1 text contrast (3:1 large text), full keyboard navigation, visible focus states, and prefers-reduced-motion alternatives for all animation via the global rule in app/globals.css.",
       "community": 1,
       "norm_label": "wcag 2.2 aa commitment",
-      "community_name": "Design Docs & Critique",
-      "id": "product_wcag_2_2_aa_commitment"
+      "id": "product_wcag_2_2_aa_commitment",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Timeless Visuals Website",
@@ -3904,8 +3893,8 @@
       "rationale": "Events photography & videography studio site \u2014 Home, Portfolio (filterable gallery + lightbox), Contact, multi-step Booking, and a lightweight /admin dashboard \u2014 built on Next.js 16 App Router with a light editorial aesthetic.",
       "community": 1,
       "norm_label": "timeless visuals website",
-      "community_name": "Design Docs & Critique",
-      "id": "readme_timeless_visuals_site"
+      "id": "readme_timeless_visuals_site",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Booking System (one booking per day, availability calendar)",
@@ -3919,8 +3908,8 @@
       "rationale": "The booking page fetches taken dates from GET /api/bookings, the calendar disables past and booked days, and POST /api/bookings re-checks the date server-side (409 on race) to guard double-booking; the start time is informational only \u2014 it tells the studio when to arrive and never affects availability.",
       "community": 1,
       "norm_label": "booking system (one booking per day, availability calendar)",
-      "community_name": "Design Docs & Critique",
-      "id": "readme_booking_system"
+      "id": "readme_booking_system",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Content Single Source (lib/content.ts)",
@@ -3934,8 +3923,8 @@
       "rationale": "Studio info, services, packages, portfolio, testimonials, and FAQs all live in lib/content.ts so content edits need no component changes; photos are Unsplash IDs replaceable there or via /public, and brand tokens live in app/globals.css @theme.",
       "community": 1,
       "norm_label": "content single source (lib/content.ts)",
-      "community_name": "Design Docs & Critique",
-      "id": "readme_content_single_source"
+      "id": "readme_content_single_source",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Timeless Visuals Favicon Brand Mark",
@@ -3948,8 +3937,8 @@
       "contributor": null,
       "community": 1,
       "norm_label": "timeless visuals favicon brand mark",
-      "community_name": "Design Docs & Critique",
-      "id": "app_icon_brandmark"
+      "id": "app_icon_brandmark",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Camera Lens Motif (brass lens ring, aperture dot, glint highlight on dark ink rounded square)",
@@ -3962,8 +3951,8 @@
       "contributor": null,
       "community": 1,
       "norm_label": "camera lens motif (brass lens ring, aperture dot, glint highlight on dark ink rounded square)",
-      "community_name": "Design Docs & Critique",
-      "id": "app_icon_camera_lens_motif"
+      "id": "app_icon_camera_lens_motif",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Next.js App Router icon.svg Favicon Convention",
@@ -3976,8 +3965,8 @@
       "contributor": null,
       "community": 1,
       "norm_label": "next.js app router icon.svg favicon convention",
-      "community_name": "Design Docs & Critique",
-      "id": "app_icon_nextjs_icon_convention"
+      "id": "app_icon_nextjs_icon_convention",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Brass Accent Color Token (#a9743f)",
@@ -3990,8 +3979,8 @@
       "contributor": null,
       "community": 1,
       "norm_label": "brass accent color token (#a9743f)",
-      "community_name": "Design Docs & Critique",
-      "id": "app_globals_color_brass"
+      "id": "app_globals_color_brass",
+      "community_name": "Design Docs & Critique"
     },
     {
       "label": "Ink Dark Background Color (#1b1916)",
@@ -4004,8 +3993,8 @@
       "contributor": null,
       "community": 1,
       "norm_label": "ink dark background color (#1b1916)",
-      "community_name": "Design Docs & Critique",
-      "id": "app_globals_color_ink"
+      "id": "app_globals_color_ink",
+      "community_name": "Design Docs & Critique"
     }
   ],
   "links": [
@@ -8780,7 +8769,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/site/Navbar.tsx",
-      "source_location": "L120",
+      "source_location": "L117",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_site_navbar_navbar",
@@ -8802,34 +8791,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/site/PageFlash.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "components_site_pageflash",
-      "target": "components_site_pageflash_flashtarget",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/site/PageFlash.tsx",
-      "source_location": "L29",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_site_pageflash",
       "target": "components_site_pageflash_pageflash",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "components/site/PageFlash.tsx",
-      "source_location": "L36",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "components_site_pageflash_pageflash",
-      "target": "components_site_pageflash_flashtarget",
       "confidence_score": 1.0
     },
     {

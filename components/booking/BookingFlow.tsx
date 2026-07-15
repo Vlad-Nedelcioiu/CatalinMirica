@@ -41,7 +41,7 @@ export function BookingFlow() {
   const [confirmed, setConfirmed] = useState<ConfirmedBooking | null>(null);
 
   const topRef = useRef<HTMLDivElement>(null);
-  const firstRender = useRef(true);
+  const lastScrolledStep = useRef(step);
 
   async function loadAvailability() {
     try {
@@ -59,12 +59,12 @@ export function BookingFlow() {
     loadAvailability();
   }, []);
 
-  // Gently scroll the flow into view when changing steps (but not on first load).
+  // Gently scroll the flow into view when changing steps — never on load.
+  // Comparing against the last-scrolled step (rather than a first-render
+  // flag) keeps this inert under StrictMode's double-invoked effects.
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
+    if (lastScrolledStep.current === step) return;
+    lastScrolledStep.current = step;
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [step]);
 
