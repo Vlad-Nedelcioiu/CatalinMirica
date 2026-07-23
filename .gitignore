@@ -32,3 +32,6 @@ next-env.d.ts
 
 # Claude Code project config (local skills/settings)
 .claude/
+
+# stray build output from running dev with a Windows-style path under WSL
+/C:*
